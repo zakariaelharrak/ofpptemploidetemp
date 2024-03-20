@@ -1,27 +1,66 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>Form Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OFPPT : Time Schedule</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
-
 <body>
+            <img src="https://seeklogo.com/images/O/ofppt-logo-ACD755B3D2-seeklogo.com.png" alt="Logo" style="display: block;padding:24px; margin: 0 auto; max-width: 96px;">
 
-    <form action="/pdfs" method="GET">
-        <label for="class-name">Choose a class:</label>
-        <br>
-        <br>
-
+    <form action="/renamed_pages" method="GET">
+        <label for="class-name">Choose Your Class:</label>
         <select name="class_name" id="class-name">
-            <option value="idocc">IDOCC</option>
-            <option value="dev">DEV</option>
-            <option value="design">DESIGN</option>
+            {% for pdf_file in pdf_files %}
+                <option value="{{ pdf_file }}">{{ pdf_file }}</option>
+            {% endfor %}
         </select>
-        <br><br>
+        <button type="submit">Get Your Time Schedule</button>
 
-        <button type="submit">Submit</button>
     </form>
 
+    
 </body>
-
 </html>
