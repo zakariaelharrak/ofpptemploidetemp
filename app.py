@@ -27,3 +27,5 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+# Made by Zakariae EL harrak https://www.linkedin.com/in/zakaria-elharrak/
