@@ -1,4 +1,4 @@
-<H2>OTS</H2>
+<H2>OTS V1</H2>
 
 Every end of the week, we receive our class schedule in the form of a PDF uploaded to a Dropbox folder. We receive this link as an announcement on the school's Facebook page.
 
