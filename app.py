@@ -5,6 +5,9 @@ import subprocess
 
 app = Flask(__name__)
 
+USERNAME = 'admin'
+PASSWORD = 'password'
+
 UPLOAD_FOLDER = 'main'
 ALLOWED_EXTENSIONS = {'pdf'}
 
@@ -19,6 +22,7 @@ def get_pdf_files():
     for filename in os.listdir('renamed_pages'):
         if filename.endswith('.pdf'):
             pdf_files.append(filename[:-4])  # Remove .pdf extension
+            pdf_files.sort()
     return pdf_files
 
 @app.route('/renamed_pages', methods=['GET'])
@@ -62,9 +66,21 @@ def run_scripts():
     print("scripts worked successfully")
     return render_template('admin.html')
 
-@app.route('/admin')
+@app.route('/admin', methods=['GET', 'POST'])
 def admin():
-    return render_template('admin.html')
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        
+        if username == USERNAME and password == PASSWORD:
+            # If the username and password match, redirect to admin page
+            return render_template('admin.html')
+        else:
+            # If the username and password don't match, redirect back to login page
+            return render_template('login.html', message='Invalid username or password')
+    else:
+        # If it's a GET request, render the login page
+        return render_template('login.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
