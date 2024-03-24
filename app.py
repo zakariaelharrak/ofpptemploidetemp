@@ -1,12 +1,15 @@
 from flask import Flask, render_template, request, send_from_directory, redirect, url_for
 import os
 import subprocess
+import os.path
+import time
+
 
 
 app = Flask(__name__)
 
-USERNAME = 'admin'
-PASSWORD = 'password'
+USERNAME = os.environ.get('MY_APP_USERNAME')
+PASSWORD = os.environ.get('MY_APP_PASSWORD')
 
 UPLOAD_FOLDER = 'main'
 ALLOWED_EXTENSIONS = {'pdf'}
@@ -37,7 +40,20 @@ def download_pdf():
 @app.route('/')
 def index():
     pdf_files = get_pdf_files()
-    return render_template('index.html', pdf_files=pdf_files)
+    last_lunch_time = get_last_lunch_time()
+    return render_template('index.html', pdf_files=pdf_files, last_lunch_time=last_lunch_time)
+
+def get_last_lunch_time():
+    # Check if the timestamp file exists
+    if os.path.exists('last_lunch.txt'):
+        # If the file exists, read the last lunch time from it
+        with open('last_lunch.txt', 'r') as file:
+            last_lunch_time = file.read()
+    else:
+        # If the file does not exist, set the last lunch time to None
+        last_lunch_time = None
+    
+    return last_lunch_time
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -83,6 +99,9 @@ def admin():
         return render_template('login.html')
 
 if __name__ == '__main__':
+    with open('last_lunch.txt', 'w') as file:
+     file.write(time.strftime('%Y-%m-%d'))
     app.run(debug=True)
+    
 
 # Made by Zakariae EL harrak https://www.linkedin.com/in/zakaria-elharrak/
