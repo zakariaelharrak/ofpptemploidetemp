@@ -45,12 +45,33 @@
         button:hover {
             background-color: #45a049;
         }
+        footer {
+            color: #b0b0b0;
+            text-align: center;
+            margin-top: 20px;
+        }
+        footer p {
+            margin-bottom: 0;
+        }
+        footer a {
+            color: inherit;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .time{
+            color: #363636;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-            <img src="https://seeklogo.com/images/O/ofppt-logo-ACD755B3D2-seeklogo.com.png" alt="Logo" style="display: block;padding:24px; margin: 0 auto; max-width: 96px;">
+    <img src="https://seeklogo.com/images/O/ofppt-logo-ACD755B3D2-seeklogo.com.png" alt="Logo" style="display: block;padding:24px; margin: 0 auto; max-width: 96px;">
+    <p class="time">Emploi du temps des stagiaires pour la semaine du {{ last_lunch_time }}</p>
 
     <form action="/renamed_pages" method="GET">
+        
         <label for="class-name">Choose Your Class:</label>
         <select name="class_name" id="class-name">
             {% for pdf_file in pdf_files %}
@@ -60,8 +81,11 @@
         <button type="submit">Get Your Time Schedule</button>
     </form>
 
-    
+    <footer>
 
-    
+        <p>
+            Created by IDOCC201 Student | <b><a  target="_blank" href="https://www.linkedin.com/in/zakaria-elharrak/">Zakariae El Harrak</a></b>
+        </p>
+    </footer>
 </body>
 </html>

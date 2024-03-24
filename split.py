@@ -18,7 +18,7 @@ def split_pdf_into_sections(input_pdf, output_folder, section_height):
             new_document.close()
 
 # Example usage:
-input_pdf = 'main/main.pdf'  # Replace with your input PDF file
+input_pdf = 'main/main.pdf'  # replace with your input PDF file
 output_folder = 'pages'  # Folder where the output pages will be saved
 section_height = 250  # Set the height of each section in points (1 point = 1/72 inch)
 
